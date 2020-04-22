@@ -1,0 +1,6 @@
+name: BSkyBlockTopTen
+main: net.hexxcraft.bskyblocktopten.BSkyBlockTopTen
+version: ${project.version}
+author: Dakir
+api-version: 1.14
+softdepend: [Multiverse-Core]

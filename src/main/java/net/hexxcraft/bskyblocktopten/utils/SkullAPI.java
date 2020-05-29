@@ -36,8 +36,8 @@ public class SkullAPI {
                         skull.update();
                     }
                 }, 10L);
-            } else if (block.getLocation().add(0,1,0).getBlock().getType() == Material.PLAYER_WALL_HEAD) {
-                final Skull skull = (Skull) block.getLocation().add(0,1,0).getBlock().getState();
+            } else if (block.getLocation().add(0, 1, 0).getBlock().getType() == Material.PLAYER_WALL_HEAD) {
+                final Skull skull = (Skull) block.getLocation().add(0, 1, 0).getBlock().getState();
                 skull.setOwningPlayer(player);
                 skull.update();
                 Bukkit.getServer().getScheduler().runTaskLater(plugin, new Runnable() {

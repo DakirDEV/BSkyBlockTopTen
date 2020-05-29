@@ -1,25 +1,24 @@
 package net.hexxcraft.bskyblocktopten;
 
+import net.hexxcraft.bskyblocktopten.commands.BSBTopTen;
 import net.hexxcraft.bskyblocktopten.events.BlockBreak;
 import net.hexxcraft.bskyblocktopten.events.PlayerInteract;
 import net.hexxcraft.bskyblocktopten.events.SignChange;
+import net.hexxcraft.bskyblocktopten.files.ConfigFile;
+import net.hexxcraft.bskyblocktopten.files.MessagesFile;
+import net.hexxcraft.bskyblocktopten.files.SignFile;
 import net.hexxcraft.bskyblocktopten.objects.TopTenSign;
 import net.hexxcraft.bskyblocktopten.taks.TopTenReload;
 import net.hexxcraft.bskyblocktopten.utils.*;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
-import world.bentobox.bentobox.api.addons.request.AddonRequestBuilder;
-import world.bentobox.bentobox.api.addons.request.AddonRequestHandler;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 public class BSkyBlockTopTen extends JavaPlugin {
 
+    private ConfigFile configFile;
+    private MessagesFile messagesFile;
     private Messages messages;
     private SkullAPI skullAPI;
     private SignAPI signAPI;
@@ -30,7 +29,13 @@ public class BSkyBlockTopTen extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        configFile = new ConfigFile(this);
+        configFile.load();
+
         messages = new Messages();
+        messagesFile = new MessagesFile(this);
+        messagesFile.load();
+
         skullAPI = new SkullAPI(this);
         signAPI = new SignAPI(this);
         topTenAPI = new TopTenAPI(this);
@@ -43,6 +48,7 @@ public class BSkyBlockTopTen extends JavaPlugin {
         signFile = new SignFile(this);
         signFile.loadData();
 
+        registerCommands();
         registerEvents();
 
         getLogger().info("Plugin has been enabled!");
@@ -51,6 +57,10 @@ public class BSkyBlockTopTen extends JavaPlugin {
     @Override
     public void onDisable() {
         getLogger().info("Plugin has been disabled!");
+    }
+
+    private void registerCommands() {
+        getServer().getPluginCommand("bsbtopten").setExecutor(new BSBTopTen(this));
     }
 
     private void registerEvents() {
@@ -81,5 +91,13 @@ public class BSkyBlockTopTen extends JavaPlugin {
 
     public SignFile getSignFile() {
         return signFile;
+    }
+
+    public ConfigFile getConfigFile() {
+        return configFile;
+    }
+
+    public MessagesFile getMessagesFile() {
+        return messagesFile;
     }
 }

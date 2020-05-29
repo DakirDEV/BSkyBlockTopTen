@@ -17,6 +17,6 @@ public class TopTenReload {
                 plugin.getTopTenAPI().setTopTenList(plugin.getTopTenAPI().getTopTen());
                 plugin.getSignAPI().updateSigns();
             }
-        }, 20L, 20L*10);
+        }, 20L, 20L * plugin.getConfig().getInt("sign-refresh-interval"));
     }
 }

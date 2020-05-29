@@ -1,4 +1,4 @@
-package net.hexxcraft.bskyblocktopten.utils;
+package net.hexxcraft.bskyblocktopten.files;
 
 import net.hexxcraft.bskyblocktopten.BSkyBlockTopTen;
 import net.hexxcraft.bskyblocktopten.objects.TopTenSign;

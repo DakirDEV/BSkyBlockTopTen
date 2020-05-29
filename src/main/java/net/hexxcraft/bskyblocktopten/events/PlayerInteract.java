@@ -25,14 +25,14 @@ public class PlayerInteract implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent e) {
-        if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if(plugin.getSignAPI().isSign(e.getClickedBlock())) {
+        if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            if (plugin.getSignAPI().isSign(e.getClickedBlock())) {
                 Sign sign = (Sign) e.getClickedBlock().getState();
                 Location location = sign.getLocation();
 
                 for (int i = 0; i < plugin.getTopTenSigns().size(); i++) {
-                    if(location.equals(plugin.getTopTenSigns().get(i).getLocation())) {
-                        e.getPlayer().performCommand("is top");
+                    if (location.equals(plugin.getTopTenSigns().get(i).getLocation())) {
+                        e.getPlayer().performCommand(plugin.getConfig().getString("command-on-sign-right-click"));
                         return;
                     }
                 }

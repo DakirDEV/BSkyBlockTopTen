@@ -22,7 +22,7 @@ public class TopTenAPI {
         return (Map<UUID, Long>) new AddonRequestBuilder()
                 .addon("Level")
                 .label("top-ten-level")
-                .addMetaData("world-name", "skyblock_world")
+                .addMetaData("world-name", plugin.getConfig().getString("skyblock-world-name"))
                 .request();
     }
 

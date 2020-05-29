@@ -2,5 +2,26 @@ name: BSkyBlockTopTen
 main: net.hexxcraft.bskyblocktopten.BSkyBlockTopTen
 version: ${project.version}
 author: Dakir
-api-version: 1.14
+api-version: 1.13
 softdepend: [Multiverse-Core]
+
+commands:
+  bsbtopten:
+    description: Reloads the files
+    usage: "Usage: /<command> reload"
+    permission: bskyblocktopten.reload
+
+permissions:
+  bskyblocktopten.*:
+    description: Gives access to all BSkyBlockTopTen permissions
+    default: op
+    children:
+      bskyblocktopten.reload: true
+      bskyblocktopten.create: true
+      bskyblocktopten.remove: true
+  bskyblocktopten.reload:
+    description: Allows the user to reload the files
+  bskyblocktopten.create:
+    description: Allows the user to create a TopTen sign
+  bskyblocktopten.remove:
+    description: Allows the user to remove a TopTen sign

@@ -18,9 +18,13 @@ public class BSBTopTen implements CommandExecutor {
 
         if (sender.hasPermission("bskyblocktopten.*") || sender.hasPermission("bskyblocktopten.reload")) {
             if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+                plugin.getTopTenReload().stop();
+
                 plugin.getConfigFile().load();
                 plugin.getMessagesFile().load();
                 plugin.getSignFile().loadData();
+
+                plugin.getTopTenReload().start();
 
                 if (sender instanceof Player) {
                     Player p = (Player) sender;

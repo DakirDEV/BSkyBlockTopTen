@@ -32,7 +32,10 @@ public class PlayerInteract implements Listener {
 
                 for (int i = 0; i < plugin.getTopTenSigns().size(); i++) {
                     if (location.equals(plugin.getTopTenSigns().get(i).getLocation())) {
-                        e.getPlayer().performCommand(plugin.getConfig().getString("command-on-sign-right-click"));
+                        String command = plugin.getConfigFile().getConfig().getString("command-on-sign-right-click");
+                        if (!command.equalsIgnoreCase("")) {
+                            e.getPlayer().performCommand(command);
+                        }
                         return;
                     }
                 }

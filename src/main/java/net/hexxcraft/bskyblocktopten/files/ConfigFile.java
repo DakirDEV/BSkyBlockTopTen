@@ -59,7 +59,7 @@ public class ConfigFile {
         config = new YamlConfiguration();
 
         try {
-            config.load(configFile);
+            config.load(new File(plugin.getDataFolder(), "config.yml"));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InvalidConfigurationException e) {

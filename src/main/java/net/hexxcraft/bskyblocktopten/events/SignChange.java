@@ -24,6 +24,11 @@ public class SignChange implements Listener {
                     Player p = e.getPlayer();
                     if (p.hasPermission("bskyblocktopten.*") || p.hasPermission("bskyblocktopten.create")) {
                         int place = Integer.parseInt(e.getLine(1));
+
+                        if(!(place >= 1 && place <=10)) {
+                            return;
+                        }
+
                         String placeString = String.valueOf(place);
                         String nameString = plugin.getTopTenAPI().getPlayerName(place);
                         String levelString = plugin.getTopTenAPI().getLevel(place).toString();

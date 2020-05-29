@@ -17,6 +17,10 @@ public class TopTenReload {
                 plugin.getTopTenAPI().setTopTenList(plugin.getTopTenAPI().getTopTen());
                 plugin.getSignAPI().updateSigns();
             }
-        }, 20L, 20L * plugin.getConfig().getInt("sign-refresh-interval"));
+        }, 20L, 20L * plugin.getConfigFile().getConfig().getInt("sign-refresh-interval"));
+    }
+
+    public void stop() {
+        Bukkit.getScheduler().cancelTasks(plugin);
     }
 }

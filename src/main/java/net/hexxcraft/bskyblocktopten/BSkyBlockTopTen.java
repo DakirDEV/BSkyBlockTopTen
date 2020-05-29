@@ -85,6 +85,10 @@ public class BSkyBlockTopTen extends JavaPlugin {
         return topTenAPI;
     }
 
+    public TopTenReload getTopTenReload() {
+        return topTenReload;
+    }
+
     public List<TopTenSign> getTopTenSigns() {
         return topTenSigns;
     }

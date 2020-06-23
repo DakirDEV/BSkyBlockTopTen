@@ -30,15 +30,23 @@ public class SignChange implements Listener {
                         }
 
                         String placeString = String.valueOf(place);
-                        String nameString = plugin.getTopTenAPI().getPlayerName(place);
-                        String levelString = plugin.getTopTenAPI().getLevel(place).toString();
+                        String nameString = "";
+                        String levelString = "0";
+
+                        if (plugin.getTopTenAPI().placeExists(place)) {
+                            nameString = plugin.getTopTenAPI().getPlayerName(place);
+                            levelString = plugin.getTopTenAPI().getLevel(place).toString();
+                        }
+
                         e.setLine(0, plugin.getMessages().signLine1.replace("%place%", placeString).replace("%name%", nameString).replace("%level%", levelString));
                         e.setLine(1, plugin.getMessages().signLine2.replace("%place%", placeString).replace("%name%", nameString).replace("%level%", levelString));
                         e.setLine(2, plugin.getMessages().signLine3.replace("%place%", placeString).replace("%name%", nameString).replace("%level%", levelString));
                         e.setLine(3, plugin.getMessages().signLine4.replace("%place%", placeString).replace("%name%", nameString).replace("%level%", levelString));
 
                         if (plugin.getSignAPI().isWallSign(e.getBlock())) {
-                            plugin.getSkullAPI().updateSkull(e.getBlock(), plugin.getTopTenAPI().getPlayerUUID(place));
+                            if (plugin.getTopTenAPI().placeExists(place)) {
+                                plugin.getSkullAPI().updateSkull(e.getBlock(), plugin.getTopTenAPI().getPlayerUUID(place));
+                            }
                         }
 
                         Location loc = e.getBlock().getLocation();

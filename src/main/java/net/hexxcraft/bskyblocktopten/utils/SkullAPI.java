@@ -9,7 +9,12 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.block.Skull;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Directional;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Base64;
 import java.util.UUID;
 
 public class SkullAPI {

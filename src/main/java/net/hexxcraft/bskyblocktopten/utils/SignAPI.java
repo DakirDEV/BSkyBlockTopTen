@@ -62,16 +62,26 @@ public class SignAPI {
             Location location = topTenSign.getLocation();
             Sign sign = (Sign) location.getBlock().getState();
             int place = topTenSign.getPlace();
+
             String placeString = String.valueOf(place);
-            String nameString = plugin.getTopTenAPI().getPlayerName(place);
-            String levelString = plugin.getTopTenAPI().getLevel(place).toString();
+            String nameString = "";
+            String levelString = "0";
+
+            if (plugin.getTopTenAPI().placeExists(place)) {
+                nameString = plugin.getTopTenAPI().getPlayerName(place);
+                levelString = plugin.getTopTenAPI().getLevel(place).toString();
+            }
+
             sign.setLine(0, plugin.getMessages().signLine1.replace("%place%", placeString).replace("%name%", nameString).replace("%level%", levelString));
             sign.setLine(1, plugin.getMessages().signLine2.replace("%place%", placeString).replace("%name%", nameString).replace("%level%", levelString));
             sign.setLine(2, plugin.getMessages().signLine3.replace("%place%", placeString).replace("%name%", nameString).replace("%level%", levelString));
             sign.setLine(3, plugin.getMessages().signLine4.replace("%place%", placeString).replace("%name%", nameString).replace("%level%", levelString));
             sign.update();
+
             if (isWallSign(sign.getBlock())) {
-                plugin.getSkullAPI().updateSkull(sign.getBlock(), plugin.getTopTenAPI().getPlayerUUID(place));
+                if (plugin.getTopTenAPI().placeExists(place)) {
+                    plugin.getSkullAPI().updateSkull(sign.getBlock(), plugin.getTopTenAPI().getPlayerUUID(place));
+                }
             }
         }
     }

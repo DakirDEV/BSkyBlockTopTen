@@ -46,4 +46,12 @@ public class TopTenAPI {
     public Long getLevel(int place) {
         return topTenList.get(getPlayerUUID(place));
     }
+
+    public boolean placeExists(int place) {
+        if (topTenList.size() < place) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
